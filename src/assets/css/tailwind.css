@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(C:\Users\EASY\Documents\Rainmeter\Skins\Robik\@Resources\Fonts);
+}
