@@ -3,7 +3,8 @@ import App from "./App.vue";
 
 import "./assets/css/index.css";
 
-import utils from "./utils";
+import utils, {Cookie} from "./utils";
+
 
 import router from "./router";
 import store from "./store";
@@ -44,11 +45,11 @@ const login = {
 
 };
 
-(async () => {
+
+const OnLogin = async () => {
   const rawResponse = await fetch("http://server.andrewcaires.me:3050/api/auth/login", {
     method: "POST",
     headers: {
-      
       "Content-Type": "application/json"
     },
     body: JSON.stringify(login)
@@ -56,4 +57,32 @@ const login = {
   const content = await rawResponse.json();
 
   console.log(content);
+  Cookie.set("token",content.token);
+
+};
+
+
+
+const OnAuth = async () => {
+  
+  const token = Cookie.get("token");
+  if(token){
+      const rawResponse = await fetch("http://server.andrewcaires.me:3050/api/auth", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": token,
+    },
+  });
+  const content = await rawResponse.json();
+
+  console.log(content);
+  }
+
+};
+
+(async ()=> {
+  await OnLogin();
+  await OnAuth();
+  Cookie.remove("token");
 })();

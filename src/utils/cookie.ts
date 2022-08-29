@@ -2,7 +2,7 @@ import { Cookie } from "@andrewcaires/cookie";
 import { App } from "vue";
 
 Cookie.options({
-  expires: 12 * 30 * 86400,
+  expires: 30 * 86400,
 });
 
 export const install = (app: App) => {
