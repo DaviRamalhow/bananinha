@@ -9,8 +9,7 @@
                 <div class="p-4 pr-6 bg-white rounded-md shadow-2xl space-y-2">
 
                     <br>
-                    <label for="email-adress"
-                        class="sr-only text-lg font-semibold leading-6 text-2xl font-mono">E-mail</label>
+                    <label for="email-adress" class="text-lg font-semibold leading-6 text-2xl font-mono">E-mail</label>
                     <br>
                     <input id="email-adress" name="password" autocomplete="email" type="email" placeholder=" E-mail"
                         v-model="email" required
@@ -23,10 +22,13 @@
                     <input id="password" name="password" type="password" autocomplete="current-password"
                         placeholder=" Password" v-model="password" required
                         class="mx-2 font-mono text-xl border border-solid border-gray-200 rounded-lg w-full focus:border-indigo-300">
-                    <p v-if="errMsg">{{ errMsg }}</p>
+                    <p v-if="errMsg">{{  errMsg  }}</p>
                     <br>
                     <input type="checkbox" id="remember">
                     <label for="remember" class="text-gray-500 mx-1">Remember Me</label>
+                    <br>
+                    <br>
+                    <ForgetPassword class="ml-28 mb-36"></ForgetPassword>
                     <br>
                     <br>
                     <button
