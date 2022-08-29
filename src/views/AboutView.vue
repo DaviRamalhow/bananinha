@@ -5,7 +5,7 @@
 
       <h1 class="text-7xl text-white font-montserrat">This is the Feed page <br> <br> You're Logged</h1>
 
-      <ForgetPassword></ForgetPassword>
+
 
     </div>
     <div>

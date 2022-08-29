@@ -49,6 +49,8 @@
                         @click="signInWithGoogle">
                         Sign In With Google
                     </button>
+                    <br>
+                    <br>
 
                 </div>
 
