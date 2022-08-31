@@ -39,50 +39,50 @@ app.use(components);
 
 app.mount("#app");
 
-const login = {
-  username: "test01",
-  password: "test01",
+// const login = {
+//   username: "test01",
+//   password: "test01",
 
-};
-
-
-const OnLogin = async () => {
-  const rawResponse = await fetch("http://server.andrewcaires.me:3050/api/auth/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(login)
-  });
-  const content = await rawResponse.json();
-
-  console.log(content);
-  Cookie.set("token",content.token);
-
-};
+// };
 
 
+// const OnLogin = async () => {
+//   const rawResponse = await fetch("http://server.andrewcaires.me:3050/api/auth/login", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json"
+//     },
+//     body: JSON.stringify(login)
+//   });
+//   const content = await rawResponse.json();
 
-const OnAuth = async () => {
-  
-  const token = Cookie.get("token");
-  if(token){
-      const rawResponse = await fetch("http://server.andrewcaires.me:3050/api/auth", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": token,
-    },
-  });
-  const content = await rawResponse.json();
+//   console.log(content);
+//   Cookie.set("token",content.token);
 
-  console.log(content);
-  }
+// };
 
-};
 
-(async ()=> {
-  await OnLogin();
-  await OnAuth();
-  Cookie.remove("token");
-})();
+
+// const OnAuth = async () => {
+
+//   const token = Cookie.get("token");
+//   if(token){
+//       const rawResponse = await fetch("http://server.andrewcaires.me:3050/api/auth", {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//       "Authorization": token,
+//     },
+//   });
+//   const content = await rawResponse.json();
+
+//   console.log(content);
+//   }
+
+// };
+
+// (async ()=> {
+//   await OnLogin();
+//   await OnAuth();
+//   Cookie.remove("token");
+// })();

@@ -5,6 +5,8 @@
       <router-link to="/about">Feed</router-link> |
       <router-link to="/RegisterUser">Register</router-link> |
       <router-link to="/SignIn">Sign In</router-link> |
+      <router-link to="/LoginToken">LoginToken</router-link> |
+      <router-link to="/AccountPage">AccountPage</router-link> |
       <button @click="handleSignOut" v-if="isLoggedIn">Sign Out</button>
     </nav>
     <router-view />

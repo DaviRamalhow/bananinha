@@ -24,16 +24,16 @@
                         class="mx-2 font-mono text-xl border border-solid border-gray-200 rounded-lg w-full focus:border-indigo-300">
                     <p v-if="errMsg">{{  errMsg  }}</p>
                     <br>
-                    <input type="checkbox" id="remember">
+                    <input type="checkbox" id="remember" class="accent-pink-500">
                     <label for="remember" class="text-gray-500 mx-1">Remember Me</label>
                     <br>
-                    <br>
-                    <ForgetPassword class="ml-28 mb-36"></ForgetPassword>
+
+                    <ForgetPassword></ForgetPassword>
                     <br>
                     <br>
                     <button
-                        class="bg-indigo-600 rounded-md px-4 py-1.5 text-2xl font-mono text-white hover:bg-indigo-400"
-                        @click="login">Login</button>
+                        class=" bg-indigo-600 rounded-md px-4 py-1.5 text-2xl font-mono text-white hover:bg-indigo-400"
+                        @click="login, OnAuth">Login</button>
                     <br>
                     <button
                         class="bg-indigo-600 rounded-md px-4 py-1.5 text-2xl font-sans text-white hover:bg-indigo-400"
@@ -42,9 +42,6 @@
                     </button>
                     <br>
                     <br>
-                    <div v-if="batatinha">
-                        <ForgetPassword></ForgetPassword>
-                    </div>
                 </div>
 
 
@@ -56,9 +53,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { onBeforeMount, onMounted, ref } from "vue";
 import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useRouter } from "vue-router";
+import utils, { Cookie } from "../utils/cookie";
 const email = ref("");
 const password = ref("");
 const errMsg = ref("");
@@ -99,7 +97,27 @@ const signInWithGoogle = () => {
 
 };
 
-const batatinha = ref(false);
+
+
+
+const OnAuth = async () => {
+
+    const token = Cookie.get("token");
+    if (token) {
+        const rawResponse = await fetch("http://server.andrewcaires.me:3050/api/auth", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token,
+            },
+        });
+        const content = await rawResponse.json();
+
+        console.log(content);
+    }
+
+};
+
 </script>
 
 <style>

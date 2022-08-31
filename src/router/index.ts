@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import routes from "./routes";
-import { resolveComponent } from "vue";
+
 
 const router = createRouter({
   history: createWebHistory(),
@@ -44,4 +44,7 @@ router.beforeEach(async(to, from, next) => {
     next();
   }
 });
+
+
+
 export default router;

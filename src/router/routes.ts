@@ -1,10 +1,12 @@
-import router from ".";
+
 import MainLayout from "../layouts/MainLayout.vue";
 
 import AboutView from "../views/AboutView.vue";
 import HomeView from "../views/HomeView.vue";
 import RegisterUser from "../views/RegisterUser.vue";
 import SignIn from "../views/SignIn.vue";
+import LoginToken from "../views/LoginToken.vue";
+import AccountPage from "../views/AccountPage.vue";
 
 export const routes = [
   {
@@ -28,11 +30,30 @@ export const routes = [
         path: "/RegisterUser",
         name: "RegisterUser",
         component: RegisterUser,
+        meta: {
+          requiresUnAuth: true,
+        },
       },
       {
         path: "/SignIn",
         name: "SignIn",
         component: SignIn,
+        meta: {
+          requiresUnAuth: true,
+        },
+      },
+      {
+        path: "/LoginToken",
+        name: "LoginToken",
+        component: LoginToken,
+      },
+      {
+        path: "/AccountPage",
+        name: "AccountPage",
+        component: AccountPage,
+        meta: {
+          requiresAuth: true,
+        },
       },
     ],
   },

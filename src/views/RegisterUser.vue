@@ -72,6 +72,7 @@ const router = useRouter();
 
 const register = () => {
     createUserWithEmailAndPassword(getAuth(), email.value, password.value)
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         .then((data) => {
             console.log("Succesfully registered!");
             router.push("/about");
@@ -84,6 +85,7 @@ const register = () => {
 const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(getAuth(), provider)
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         .then((result) => {
             console.log("result.user");
             router.push("/about");
