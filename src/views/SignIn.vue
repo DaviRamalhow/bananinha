@@ -22,13 +22,29 @@
                     <input id="password" name="password" type="password" autocomplete="current-password"
                         placeholder=" Password" v-model="password" required
                         class="mx-2 font-mono text-xl border border-solid border-gray-200 rounded-lg w-full focus:border-indigo-300">
-                    <p v-if="errMsg">{{  errMsg  }}</p>
+                    <p v-if="errMsg">{{ errMsg }}</p>
                     <br>
                     <input type="checkbox" id="remember" class="accent-pink-500">
                     <label for="remember" class="text-gray-500 mx-1">Remember Me</label>
                     <br>
 
-                    <ForgetPassword></ForgetPassword>
+                    <button @click="showModal" class="text-gray-400 hover:text-gray-300">Forget
+                        your password?</button>
+                    <CompModal v-if="batatinha">
+                        <br>
+                        <br>
+                        <label for="email-adress" class="text-lg font-semibold leading-6 text-2xl font-mono">
+                            Confirm your E-mail</label>
+                        <br>
+                        <p class="text-md text-gray-400">We'll send you an email with ur new password</p>
+                        <input id="email-adress" name="password" autocomplete="email" type="email" placeholder=" E-mail"
+                            v-model="email" required
+                            class="mx-2 font-mono text-xl border border-solid border-gray-300 rounded-lg w-full focus:border-indigo-300">
+                        <br>
+                        <button
+                            class="bg-indigo-600 rounded-md px-4 py-1.5 text-2xl font-mono text-white hover:bg-indigo-400"
+                            @click="batatinha = false">Confirm</button>
+                    </CompModal>
                     <br>
                     <br>
                     <button
@@ -61,7 +77,10 @@ const email = ref("");
 const password = ref("");
 const errMsg = ref("");
 const router = useRouter();
-
+const batatinha = ref(false);
+const showModal = () => {
+    batatinha.value = true;
+};
 const login = () => {
     signInWithEmailAndPassword(getAuth(), email.value, password.value)
         .then((data) => {

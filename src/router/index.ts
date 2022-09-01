@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import routes from "./routes";
+import Cookie from "@andrewcaires/cookie";
 
 
 const router = createRouter({
@@ -45,6 +46,20 @@ router.beforeEach(async(to, from, next) => {
   }
 });
 
+
+router.beforeEach(async(to, from, next) => {
+  const onAuth = Cookie.check("token");
+  if(to.matched.some((record) => record.meta.auth)) {
+    if (onAuth){
+      next();
+    } else {
+      alert ("nope");
+      next("/");
+    }
+  }else {
+    next();
+  }
+});
 
 
 export default router;

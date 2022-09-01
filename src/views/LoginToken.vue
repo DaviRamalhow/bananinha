@@ -80,10 +80,13 @@ const OnLogin = async () => {
         body: JSON.stringify(login)
     });
     const content = await rawResponse.json();
-
     console.log(content);
-    Cookie.set("token", content.token);
-
+    if (rawResponse.status == 200) {
+        Cookie.set("token", content.token);
+        return true;
+    } else {
+        return false;
+    }
 };
 const OnAuth = async () => {
 
@@ -104,8 +107,11 @@ const OnAuth = async () => {
 };
 
 async function banana() {
-    await OnLogin();
-    await OnAuth();
+    const auth = await OnLogin();
+    if (auth) {
+        await OnAuth();
+    }
+
     // Cookie.remove("token");
     batatinha.value = true;
 }

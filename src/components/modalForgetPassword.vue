@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center absolute">
+    <div class="flex flex-col items-center ">
         <button @click="isShowing = !isShowing" class="text-gray-400 hover:text-gray-200">
             Forget Your Password?
         </button>

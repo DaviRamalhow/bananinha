@@ -52,7 +52,7 @@ export const routes = [
         name: "AccountPage",
         component: AccountPage,
         meta: {
-          requiresAuth: true,
+          auth: true,
         },
       },
     ],
