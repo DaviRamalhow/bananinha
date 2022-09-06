@@ -34,10 +34,7 @@
                         class="bg-indigo-600 rounded-md px-4 py-1.5 text-2xl font-mono text-white hover:bg-indigo-400"
                         @click="banana()">Login</button>
                     <br>
-
                 </div>
-
-
             </div>
         </div>
         <div v-if="batatinha == true" class="font-mono text-lg text-white">
@@ -51,6 +48,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import router from "../router";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import utils, { Cookie } from "../utils/cookie";
 
@@ -83,6 +81,7 @@ const OnLogin = async () => {
     console.log(content);
     if (rawResponse.status == 200) {
         Cookie.set("token", content.token);
+
         return true;
     } else {
         return false;
@@ -103,7 +102,6 @@ const OnAuth = async () => {
 
         console.log(content01);
     }
-
 };
 
 async function banana() {
@@ -111,11 +109,9 @@ async function banana() {
     if (auth) {
         await OnAuth();
     }
-
     // Cookie.remove("token");
-    batatinha.value = true;
+    router.push("/AccountPage");
 }
-
 
 </script>
 

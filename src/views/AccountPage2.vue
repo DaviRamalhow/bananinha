@@ -11,7 +11,7 @@
             <br>
             <button @click="OnSignOut"
               class="bg-gradient-to-r from-red-500 to-red-500 rounded-xl text-lg font-sans font-semibold px-2 py-1 m-1 p-2 w-lg h-min-md">
-              Sign Out
+              Sign Outasas
             </button>
           </div>
         </div>

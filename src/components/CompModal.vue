@@ -1,5 +1,6 @@
 <template>
-    <div class="flex flex-col items-center absolute">
+    <div
+        class="flex flex-col items-center justify-center absolute z-50 bg-slate-800 bg-opacity-80 min-w-full min-h-screen">
 
         <div>
             <TransitionRoot appear :show="isShowing" as="template" enter="transform transition duration-[600ms]"
@@ -9,9 +10,7 @@
                 <div class=" flex justify-center items-center  w-96 h-96 z-50">
                     <div class="flex-1">
                         <div class="grid grid-cols-1 grid-rows-1 grid-flow-row-dense opacity-100">
-
-                            <div
-                                class="p-4 pr-6 bg-white rounded-md shadow-2xl space-y-2 drop-shadow-2xl border-2 border-solid border-indigo-00">
+                            <div class="p-4 pr-6 bg-white rounded-md shadow-2xl space-y-2 drop-shadow-2xl">
                                 <slot></slot>
                                 <br>
                                 <br>
@@ -21,7 +20,6 @@
                 </div>
             </TransitionRoot>
         </div>
-
     </div>
 </template>
 

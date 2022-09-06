@@ -19,42 +19,56 @@ router.beforeEach((to) => {
   return true;
 });
 
-const getCurrentUser = () => {
-  return new Promise((resolve, reject) => {
-    const removeListener = onAuthStateChanged(
-      getAuth(),
-      (user) => {
-        removeListener();
-        resolve(user);
-      },
+// const getCurrentUser = () => {
+//   return new Promise((resolve, reject) => {
+//     const removeListener = onAuthStateChanged(
+//       getAuth(),
+//       (user) => {
+//         removeListener();
+//         resolve(user);
+//       },
 
-      reject
-    );
-  });
-};
+//       reject
+//     );
+//   });
+// };
+
+// router.beforeEach(async(to, from, next) => {
+//   if(to.matched.some((record) => record.meta.requiresAuth)) {
+//     if(await getCurrentUser()){
+//       next();
+//     } else {
+//       alert("you dont have access!");
+//       next("/SignIn");
+//     }
+//   }else {
+//     next();
+//   }
+// });
+
 
 router.beforeEach(async(to, from, next) => {
-  if(to.matched.some((record) => record.meta.requiresAuth)) {
-    if(await getCurrentUser()){
+  const token = Cookie.check("token");
+  if(to.matched.some((record) => record.meta.auth)) {
+    if (token){
       next();
     } else {
-      alert("you dont have access!");
-      next("/");
+      //console.log ("nope");
+      next("/LoginToken");
     }
   }else {
     next();
   }
 });
 
-
 router.beforeEach(async(to, from, next) => {
   const onAuth = Cookie.check("token");
-  if(to.matched.some((record) => record.meta.auth)) {
+  if(to.matched.some((record) => record.meta.guest)) {
     if (onAuth){
-      next();
+      // alert ("Alrea");
+      next("/AccountPage");
     } else {
-      alert ("nope");
-      next("/");
+      next();
     }
   }else {
     next();
